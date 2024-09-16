@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+
+<div class="relative flex items-center justify-center w-85 h-40 bg-gray-100">
+    <!-- Background text -->
+    <div class="absolute inset-0 flex items-center justify-center text-6xl text-gray-300 opacity-50">
+      {{ counter.name }}
+    </div>
+    <!-- Counter -->
+    <div class="relative z-10 text-6xl text-black font-extrabold tracking-wider font-sans py-3">
+        {{ counter.count }}
+    </div>
+    <!-- Buttons -->
+    <div class="absolute inset-y-0 left-0 flex items-center justify-center py-5">
+        <a href="{{ url_for('counter.decrease_counter', counter_id=counter.uuid) }}" class="text-red-500 hover:text-red-700">    
+            <svg class="w-40 h-40 text-red-600 dark:text-red-900 hover:text-red-800 dark:hover:text-red-700" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7"/>
+              </svg>
+        </a>
+    </div>
+    <div class="absolute inset-y-0 right-0 flex items-center justify-center">
+        <a href="{{ url_for('counter.increase_counter', counter_id=counter.uuid) }}" class="text-green-500 hover:text-green-700">
+            <svg class="w-40 h-40 text-green-500 dark:text-green-900 hover:text-green-800 dark:hover:text-green-700" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m5 15 7-7 7 7"/>
+              </svg>
+        </a>
+    </div>
+</div>
+<div class="relative flex flex-row items-center justify-center">
+    <a href="{{ url_for('counter.list_counters') }}" class="bg-sky-500 hover:bg-sky-700 text-white font-bold py-2 px-4 rounded my-3">
+        <svg class="w-[40px] h-[40px] text-gray-800 dark:text-white inline-block align-middle" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m4 12 8-8 8 8M6 10.5V19a1 1 0 0 0 1 1h3v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h3a1 1 0 0 0 1-1v-8.5"/>
+        </svg><span class="ml-2">List Counters</span>
+    </a>
+</div>
+ 
+{% endblock content %}

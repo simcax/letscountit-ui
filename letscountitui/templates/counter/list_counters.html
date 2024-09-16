@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="bg-sky-500  sm:flex flex-row sm:shrink-0 md:shrink-0 text-center py-3">
+    <div class="text-white text-6xl font-bold py-2 px-4 rounded w-7/8">
+        Let's Count IT!
+    </div>
+    <div class="ml-4 py-3 justify-end w-1/8">
+        <a href="{{ url_for('counter.create_counter')}}" class="text-green-500 hover:text-green-700">
+        <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+            <path stroke="currentColor" fill-rule="evenodd" d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm11-4.243a1 1 0 1 0-2 0V11H7.757a1 1 0 1 0 0 2H11v3.243a1 1 0 1 0 2 0V13h3.243a1 1 0 1 0 0-2H13V7.757Z" clip-rule="evenodd"/>
+          </svg>          
+        </a>
+    </div>
+</div>
+
+<div class="space-y-1">
+    <div class="relative flex items-center justify-center w-85 h-40 bg-gray-100">
+        <div class="absolute inset-0 flex items-center justify-center text-6xl text-gray-300 opacity-50">
+            Counters
+        </div>
+        <div class="relative z-10 text-6xl text-black font-extrabold tracking-wider font-sans py-3">
+            {{ counters|length }}
+        </div>
+    </div>
+
+
+    {% for counter in counters %}
+    <div class="relative w-full h-32 bg-gray-100">
+    
+        <!-- Background Text -->
+        <div class="absolute inset-0 flex justify-center items-center opacity-20 text-6xl text-gray-500">
+            <a href="{{ url_for('counter.show_counter', counter_id=counter.uuid )}}">
+            {{ counter.name }}
+            </a>
+        </div>
+        <!-- Foreground Counter -->
+        <div class="absolute justify-center transform translate-x-1/2 top-1/2 transform -translate-y-1/2 bg-transparent p-4 rounded shadow-lg text-2xl font-bold text-gray-800">
+            <form hx-post="{{ url_for('counter.update_counter', counter_id=counter.uuid) }}" hx-swap="outer-html" class="justify-center">
+                <input type="number" name="new_count" value="{{ counter.count }}" class="bg-white-100 opacity-50 w-20">
+            </form>
+        </div>
+        
+  </div>
+  {% endfor %}
+</div>
+  
+
+
+{% endblock content %}
