@@ -6,6 +6,7 @@ import pytest
 from flask import url_for
 
 
+@pytest.mark.integration
 def test_list_counters_page(client):
     response = client.get(url_for("counter.list_counters"))
     assert response.status_code == 200
