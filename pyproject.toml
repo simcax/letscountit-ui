@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "letscountitui"
-version = "0.1.0"
+version = "0.1.1a0"
 description = "A UI for letscountit"
 authors = ["Carsten Skov <carsten@simcax.dk>"]
 readme = "README.md"
