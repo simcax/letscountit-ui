@@ -88,5 +88,6 @@ jobs:
         POETRY_VERSION: ${{ needs.lint-test.outputs.poetry-version }}
       uses: docker/build-push-action@v6
       with:
+        file: docker/Dockerfile
         push: true
         tags: simcax/letscountit-ui:${{ env.POETRY_VERSION}}
