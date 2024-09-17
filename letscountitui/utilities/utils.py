@@ -1,7 +1,8 @@
 """Utily module for the UI to retrieve things from the backend and similar tools."""
 
-import requests
 from os import environ
+
+import requests
 from loguru import logger
 
 

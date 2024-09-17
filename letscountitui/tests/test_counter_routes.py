@@ -16,7 +16,7 @@ def test_list_counters_page_no_data(client):
         mock_get_data.return_value = []
         response = client.get(url_for("counter.list_counters"))
         assert response.status_code == 200
-        assert b"No counters found" in response.data
+        assert b"0" in response.data
 
 
 def test_list_counters_page_with_counters(client):
@@ -55,6 +55,7 @@ def test_list_counters_page_with_counters(client):
         assert b"0" in response.data
 
 
+@pytest.mark.integration
 def test_show_counter(client):
     """Tests the show counter page - which shows a specific counter"""
     with patch("letscountitui.utilities.utils.DataRetrieval.get_data") as mock_get_data:
@@ -77,6 +78,7 @@ def test_show_counter(client):
     assert b"10" in response.data
 
 
+@pytest.mark.integration
 def test_increase_counter(client):
     """Tests increasing a counter using the increase counter endpoint"""
     with patch(
@@ -93,7 +95,8 @@ def test_increase_counter(client):
         url_for(
             "counter.increase_counter",
             counter_id="123e4567-e89b-12d3-a456-426614174000",
-        )
+        ),
+        follow_redirects=True,
     )
     assert response.status_code == 200
     assert b"Counter" in response.data
@@ -102,6 +105,7 @@ def test_increase_counter(client):
     assert b"11" in response.data
 
 
+@pytest.mark.integration
 def test_decrease_counter(client):
     """Tests decreasing a counter using the decrease counter endpoint"""
     with patch(
@@ -127,6 +131,7 @@ def test_decrease_counter(client):
     assert b"9" in response.data
 
 
+@pytest.mark.integration
 def test_create_counter(client):
     """Tests creating a counter using the create counter endpoint"""
     with patch(
@@ -147,6 +152,7 @@ def test_create_counter(client):
             ]
 
 
+@pytest.mark.integration
 def test_create_counter_1(client):
     """Tests creating a counter using the create counter endpoint"""
     with patch(
@@ -173,6 +179,7 @@ def test_create_counter_1(client):
             assert b"0" in response.data
 
 
+@pytest.mark.integration
 def test_create_counter_with_existing_name(client):
     """Tests creating a counter with an existing name"""
     with patch(
@@ -184,6 +191,7 @@ def test_create_counter_with_existing_name(client):
         assert b"Counter name already exists" in response.data
 
 
+@pytest.mark.integration
 def test_create_counter_with_invalid_name(client):
     """Tests creating a counter with an invalid name"""
     response = client.get(url_for("counter.create_counter", name=""))

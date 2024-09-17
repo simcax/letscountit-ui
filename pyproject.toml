@@ -24,3 +24,12 @@ poetry = "^1.8.3"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "--strict-markers"
+testpaths = ["tests"]
+pythonpath = ["letscountitui"]
+markers = [
+    "integration: integration tests. "
+]

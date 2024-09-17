@@ -1,6 +1,7 @@
 """Shared fixtures for tests."""
 
 import pytest
+
 from letscountitui import create_app
 
 
