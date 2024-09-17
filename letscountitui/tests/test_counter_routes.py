@@ -2,6 +2,7 @@
 
 from unittest.mock import patch
 
+import pytest
 from flask import url_for
 
 
